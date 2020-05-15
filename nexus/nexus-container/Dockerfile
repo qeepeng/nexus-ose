@@ -2,7 +2,8 @@ FROM centos:7
 
 EXPOSE 8081
 
-ENV NEXUS_VERSION 2.14.0-01
+#ENV NEXUS_VERSION 2.14.0-01
+ENV NEXUS_VERSION 3.23.0-03
 ENV NEXUS_HOME /opt/nexus/nexus
 ENV NEXUS_WORK /sonatype-work
 ENV NEXUS_REPOS /repositories
@@ -23,7 +24,8 @@ RUN curl --fail --silent --location --retry 3 \
 # Install the binaries
 RUN mkdir -p /opt/nexus/nexus \
   && curl --fail --silent --location --retry 3 \
-    https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
+#    https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
+     https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-${NEXUS_VERSION}-unix.tar.gz \
   | gunzip \
   | tar x -C /tmp nexus-${NEXUS_VERSION} \
   && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/nexus/nexus/ \
